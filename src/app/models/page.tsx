@@ -1,7 +1,11 @@
 "use client";
 
 import AppShell from "@/components/common/AppShell";
-import { BubbleChartWidget } from "@/components/widgets";
+import dynamic from "next/dynamic";
+const BubbleChartWidget = dynamic(
+  () => import("@/components/widgets").then((m) => m.BubbleChartWidget),
+  { ssr: false }
+);
 import { useEffect, useState } from "react";
 
 export default function ModelsPage() {

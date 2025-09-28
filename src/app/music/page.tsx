@@ -1,7 +1,11 @@
 "use client";
 
 import AppShell from "@/components/common/AppShell";
-import { MusicWidget } from "@/components/widgets";
+import dynamic from "next/dynamic";
+const MusicWidget = dynamic(
+  () => import("@/components/widgets").then((m) => m.MusicWidget),
+  { ssr: false }
+);
 
 export default function MusicPage() {
   return (

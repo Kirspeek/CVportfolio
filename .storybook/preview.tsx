@@ -5,6 +5,7 @@ import "../src/styles/mobile.css";
 import "../src/styles/mobile-grid.css";
 import "../src/styles/weather.css";
 import { TooltipProvider } from "../src/context/TooltipContext";
+import { withThemeByClassName } from "@storybook/addon-themes";
 
 const preview: Preview = {
   parameters: {
@@ -43,31 +44,34 @@ const preview: Preview = {
     },
   },
   decorators: [
+    withThemeByClassName({
+      themes: {
+        light: "light",
+        dark: "dark",
+      },
+      defaultTheme: "dark",
+      parentSelector: "html",
+    }),
     (Story, context) => {
-      const selectedTheme = (context.globals as any).theme as
-        | string
-        | undefined;
-      const saved =
-        typeof window !== "undefined"
-          ? (localStorage.getItem("theme") as "light" | "dark" | null)
-          : null;
+      const selected = (context.globals as any).theme as string | undefined;
       const mode =
-        (selectedTheme as "light" | "dark" | undefined) || saved || "dark";
-      const isDark = mode === "dark";
-      if (typeof document !== "undefined") {
-        document.documentElement.classList.toggle("dark", isDark);
-      }
+        selected === "light" ? "light" : selected === "dark" ? "dark" : "dark";
       try {
         if (typeof localStorage !== "undefined") {
-          localStorage.setItem("theme", isDark ? "dark" : "light");
+          localStorage.setItem("theme", mode);
+          // Also emit storage event so our useTheme store in components reacts immediately
+          window.dispatchEvent(
+            new StorageEvent("storage", { key: "theme", newValue: mode } as any)
+          );
         }
       } catch {}
-      return (
-        <TooltipProvider>
-          <Story />
-        </TooltipProvider>
-      );
+      return <Story />;
     },
+    (Story) => (
+      <TooltipProvider>
+        <Story />
+      </TooltipProvider>
+    ),
   ],
 };
 

@@ -8,14 +8,15 @@ export default function SunMoonToggle({
   size = 28,
   className = "",
 }: SunMoonToggleProps) {
-  const { isDark, toggleTheme, accent } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
 
   const clipId = useId();
   const filterId = useId();
 
   const sunColor = "#FFCE54";
-  const accentBlue = accent?.blue ?? "#7BC2E8";
-  const moonColor = isDark ? accentBlue : "#FFF3D8";
+  // Use violet for dark theme moon color
+  const violet = "#9B8CF1";
+  const moonColor = isDark ? violet : "#FFF3D8";
   const ringColor = isDark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.1)";
 
   const containerStyle: React.CSSProperties = useMemo(
@@ -46,7 +47,7 @@ export default function SunMoonToggle({
       clipPath: `url(#${clipId})`,
       zIndex: 1,
       boxShadow: isDark
-        ? "0 0 8px 2px rgba(96,165,250,0.75)"
+        ? "0 0 8px 2px rgba(155,140,241,0.75)"
         : "0 0 4px 1px rgba(255,206,84,0.6)",
       pointerEvents: "none",
       willChange: "top, left, background",
