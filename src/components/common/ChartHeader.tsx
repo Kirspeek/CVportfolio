@@ -37,7 +37,14 @@ export default function ChartHeader({
             {cardNumber || "**** ****"}
           </div>
         )}
-        {subtitle && <div className="text-sm secondary-text">{subtitle}</div>}
+        {subtitle && (
+          <div
+            className="text-sm secondary-text"
+            style={{ fontFamily: "var(--font-fira)" }}
+          >
+            {subtitle}
+          </div>
+        )}
       </div>
 
       <div className="flex items-center gap-2">

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Download } from "lucide-react";
 import Title from "./parts/Title";
 import NavButtons from "./parts/NavButtons";
 import SearchBox from "./parts/SearchBox";
@@ -32,6 +32,42 @@ export default function Header({
   const iconSize = isMobile ? 22 : isTablet ? 26 : 28;
   const orangeColor = "#ff6b4a";
   const iconStroke = isMobile ? 2.2 : isTablet ? 2.35 : 2.5;
+
+  const cvHref = "/cv.pdf";
+
+  const CvButton: React.FC<{ size?: "sm" | "md" | "lg" }> = ({
+    size = "md",
+  }) => {
+    const paddingClass =
+      size === "sm"
+        ? "px-4 py-1.5"
+        : size === "lg"
+          ? "px-5 py-2"
+          : "px-4 py-1.5";
+    const textSizeClass =
+      size === "sm" ? "text-base" : size === "lg" ? "text-lg" : "text-base";
+    const iconPx = size === "sm" ? 20 : size === "lg" ? 22 : 20;
+    return (
+      <a
+        href={cvHref}
+        download
+        className={`widget-button rounded-full inline-flex items-center gap-1 ${paddingClass} ${textSizeClass}`}
+        style={{
+          fontWeight: 900,
+          letterSpacing: "0.03em",
+          border: `3px solid ${orangeColor}`,
+          color: orangeColor,
+          background: "transparent",
+          fontFamily: "var(--font-mono)",
+          textTransform: "uppercase",
+        }}
+        title="Download CV"
+      >
+        <span>My CV</span>
+        <Download size={iconPx} color={orangeColor} strokeWidth={iconStroke} />
+      </a>
+    );
+  };
 
   useEffect(() => {
     const checkViewport = () => {
@@ -74,7 +110,8 @@ export default function Header({
     { key: "dashboard", label: "Chart Dashboard" },
     { key: "projects", label: "Projects" },
     { key: "about", label: "About me" },
-    { key: "experience", label: "Work experience" },
+    { key: "experience", label: "Experience" },
+    { key: "contact", label: "Contact" },
   ];
   const sectionList = sections && sections.length ? sections : defaultSections;
   const sectionLabelMap = new Map(sectionList.map((s) => [s.key, s.label]));
@@ -106,15 +143,10 @@ export default function Header({
               <Title text={computedTitle} fontSize="1.2rem" />
             </div>
             <NavButtons
-              sections={["dashboard", "projects", "about", "experience"]}
+              sections={sectionList.map(s => s.key)}
               activeSection={activeSection}
               onSelect={setSection}
-              labelMap={
-                sectionLabelMap as Map<
-                  "dashboard" | "projects" | "about" | "experience",
-                  string
-                >
-              }
+              labelMap={sectionLabelMap}
               getSectionHref={undefined}
               color={orangeColor}
               borderWidth={1.5}
@@ -126,7 +158,7 @@ export default function Header({
               (contactLinks && contactLinks.length > 0) ||
               activeSection === "dashboard") && (
               <div className="flex items-center justify-center">
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col items-center gap-2">
                   {activeSection === "dashboard" && (
                     <SearchBox
                       value={value}
@@ -143,6 +175,7 @@ export default function Header({
                       searchRef={searchRef}
                     />
                   )}
+                  {activeSection === "about" && <CvButton size="md" />}
                   <ContactIcons
                     contactEmail={contactEmail}
                     contactLinks={contactLinks}
@@ -163,15 +196,10 @@ export default function Header({
               <Title text={computedTitle} fontSize="1.55rem" />
             </div>
             <NavButtons
-              sections={["dashboard", "projects", "about", "experience"]}
+              sections={sectionList.map(s => s.key)}
               activeSection={activeSection}
               onSelect={setSection}
-              labelMap={
-                sectionLabelMap as Map<
-                  "dashboard" | "projects" | "about" | "experience",
-                  string
-                >
-              }
+              labelMap={sectionLabelMap}
               getSectionHref={undefined}
               color={orangeColor}
               borderWidth={1.5}
@@ -200,6 +228,7 @@ export default function Header({
                       searchRef={searchRef}
                     />
                   )}
+                  {activeSection === "about" && <CvButton size="md" />}
                   <ContactIcons
                     contactEmail={contactEmail}
                     contactLinks={contactLinks}
@@ -232,7 +261,8 @@ export default function Header({
             {/* Centered navigation buttons */}
             <div className="absolute left-1/2 -translate-x-1/2 transform w-full flex justify-center pointer-events-none">
               <div className="hidden md:flex items-center gap-2 pointer-events-auto">
-                {(["dashboard", "projects", "about", "experience"] as const)
+                {sectionList
+                  .map(s => s.key)
                   .filter((k) => k !== activeSection)
                   .map((key) => (
                     <button
@@ -324,6 +354,7 @@ export default function Header({
                   )}
                 </div>
               )}
+              {activeSection === "about" && <CvButton size="lg" />}
               {contactEmail || (contactLinks && contactLinks.length > 0) ? (
                 <ContactIcons
                   contactEmail={contactEmail}

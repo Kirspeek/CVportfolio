@@ -1,0 +1,468 @@
+.retro-card {
+  display: inline-block;
+  padding: 48px 56px;
+  background: #efefef;
+  border: 6px solid #bdbdbd;
+  border-radius: 0;
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.12),
+    inset 0 2px 0 rgba(255, 255, 255, 0.5);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  .retro-card {
+    background: transparent;
+  }
+}
+
+.dark .retro-card {
+  background: transparent;
+}
+
+/* Compact card padding on small screens so total width never exceeds viewport */
+@media (max-width: 425px) {
+  .retro-card {
+    padding: 16px;
+    border-width: 4px;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+.retro-computer * {
+  box-sizing: border-box;
+}
+.retro-computer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.retro-computer .center {
+  position: relative;
+  width: 350px;
+  max-width: min(92vw, 100%);
+  font-family: "VT323", monospace;
+}
+
+/* Ensure the computer fits on small screens by scaling the whole unit */
+.retro-computer .center {
+  transform-origin: top center;
+}
+@media (max-width: 425px) {
+  .retro-computer .center {
+    transform: scale(0.96);
+  }
+}
+@media (max-width: 390px) {
+  .retro-computer .center {
+    transform: scale(0.92);
+  }
+}
+@media (max-width: 360px) {
+  .retro-computer .center {
+    transform: scale(0.88);
+  }
+}
+@media (max-width: 340px) {
+  .retro-computer .center {
+    transform: scale(0.84);
+  }
+}
+
+/* Screen */
+.retro-computer .screenBox {
+  position: relative;
+  width: 300px;
+  height: 270px;
+  background-color: #d1d1d1;
+  border-radius: 1%;
+  left: 25px;
+}
+.retro-computer .behind {
+  position: absolute;
+  width: 316px;
+  height: 200px;
+  top: 16px;
+  left: 17px;
+  background-color: #bdbdbd;
+  border-radius: 2% / 50%;
+  z-index: 0;
+}
+.retro-computer .frame {
+  z-index: 1;
+  position: relative;
+}
+.retro-computer .frame {
+  position: absolute;
+  width: 284px;
+  height: 254px;
+  background-color: #e3e3e3;
+  left: 8px;
+  top: 8px;
+  border: 2px #888 solid;
+  border-radius: 4px;
+}
+.retro-computer .screenBox2 {
+  position: absolute;
+  width: 100%;
+  height: 214px;
+  background-color: #999;
+  border-bottom: 2px #888 solid;
+}
+.retro-computer .screenBox3 {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 268px;
+  height: 198px;
+  background-color: #7a7a7a;
+  border-radius: 30% / 2%;
+}
+.retro-computer .screenEffect {
+  background: repeating-linear-gradient(
+    to bottom,
+    #171717,
+    #171717 1px,
+    #121212 1px,
+    #121212 2px
+  );
+}
+.retro-computer .screen {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 256px;
+  height: 186px;
+  background-color: #171717;
+  border-radius: 50% / 8%;
+  -webkit-box-shadow: inset 0px 12px 10px 0px #0d0d0d;
+  box-shadow: inset 0 12px 10px 0 #0d0d0d;
+  overflow: hidden;
+  cursor: text;
+}
+.retro-computer .bottomFrame {
+  position: absolute;
+  background-color: #e3e3e3;
+  width: 100%;
+  height: 32px;
+  bottom: 0;
+  border-top: 2px #888 solid;
+}
+.retro-computer .fan {
+  position: absolute;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff,
+    #fff 3px,
+    #333 3px,
+    #333 6px
+  );
+  width: 72px;
+  height: 100%;
+}
+.retro-computer .ibmLogo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6px;
+  width: 90px;
+  height: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-family: "VT323", monospace;
+  text-align: center;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: transparent;
+  background: repeating-linear-gradient(
+    180deg,
+    #6a6a6a 0 1.4px,
+    rgba(255, 255, 255, 0.85) 1.4px 2.8px
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.85;
+}
+.retro-computer .logo {
+  position: absolute;
+  top: 8px;
+  left: 130px;
+  width: 40px;
+}
+.retro-computer .screenBox .powerButton {
+  position: absolute;
+  top: 5px;
+  left: 250px;
+  width: 20px;
+  height: 20px;
+  background-color: #999;
+  border: 1px #7a7a7a solid;
+  cursor: pointer;
+}
+.retro-computer .powerIcon {
+  position: absolute;
+  border: 1px #555 solid;
+  top: 4.5px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.retro-computer .screenBox .powerLight {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  top: 13px;
+  left: 230px;
+  border-radius: 50%;
+}
+.retro-computer .lightOn {
+  background-color: #1bcf60;
+  box-shadow: 0 1px 5px 0 #1bcf60;
+}
+.retro-computer .lightOff {
+  background-color: #fa4646;
+  box-shadow: 0 1px 5px 0 #fa4646;
+}
+
+.retro-computer .screenFoot {
+  position: relative;
+  width: 220px;
+  height: 15px;
+  margin: 0;
+  left: 65px;
+  background-color: #bdbdbd;
+}
+
+.retro-computer .computer {
+  position: relative;
+  width: 340px;
+  height: 80px;
+  background-color: #d1d1d1;
+  border-radius: 3px;
+  margin: 0;
+  left: 5px;
+}
+.retro-computer .computerFrame {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  width: 328px;
+  height: 64px;
+  background-color: #e3e3e3;
+  border: 2px #888 solid;
+  border-radius: 3px;
+}
+
+.retro-computer .computerFan1,
+.retro-computer .computerFan2 {
+  position: absolute;
+  background: repeating-linear-gradient(
+    90deg,
+    #fff,
+    #fff 3px,
+    #333 3px,
+    #333 6px
+  );
+  height: 21.5px;
+  width: 80px;
+  top: 7px;
+  left: 5px;
+}
+.retro-computer .computerFan2 {
+  top: 35.5px;
+}
+.retro-computer .screw1 {
+  left: 95px;
+  top: 12px;
+}
+.retro-computer .screw2 {
+  left: 95px;
+  top: 42px;
+}
+.retro-computer .screw3 {
+  left: 255px;
+  top: 12px;
+}
+.retro-computer .screw4 {
+  left: 278px;
+  top: 12px;
+}
+.retro-computer .screw5 {
+  left: 303px;
+  top: 12px;
+}
+.retro-computer div[class^="screw"] {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #222;
+  border-radius: 50%;
+}
+.retro-computer .computerFrame2 {
+  position: absolute;
+  width: 130px;
+  height: 46px;
+  background-color: #999;
+  left: 110px;
+  top: 7px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.15);
+  padding: 6px;
+  box-sizing: border-box;
+}
+.retro-computer .computerFrame2::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 26px;
+  height: 2px;
+  background: #7a7a7a;
+  border-radius: 1px;
+}
+.retro-computer .floppy {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 6px;
+  height: 22px;
+  background-color: #222;
+}
+.retro-computer .fingerGrip {
+  position: absolute;
+  width: 30px;
+  height: 20px;
+  background-color: #0d0d0d;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+.retro-computer .slot {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 6px;
+  top: 8px;
+  border-radius: 3px;
+  background-color: #000;
+}
+.retro-computer .socket1 {
+  position: absolute;
+  left: 6px;
+  width: calc(50% - 9px);
+  height: 12px;
+  background-color: #000;
+  top: 30px;
+}
+.retro-computer .socket2 {
+  position: absolute;
+  right: 6px;
+  width: calc(50% - 9px);
+  height: 12px;
+  background-color: #000;
+  top: 30px;
+}
+
+.retro-computer .computer .powerButton {
+  position: absolute;
+  width: 35px;
+  height: 26px;
+  left: 255px;
+  background-color: #333;
+  top: 30px;
+}
+.retro-computer .buttonSlide {
+  position: absolute;
+  width: 90%;
+  height: 12px;
+  left: 5%;
+  top: 2px;
+  background-color: #111;
+  border-radius: 1px;
+}
+.retro-computer .computerButton {
+  position: absolute;
+  width: 45%;
+  height: 8px;
+  top: 2px;
+  background-color: #fa4646;
+  cursor: pointer;
+  transition: left 0.25s ease;
+}
+.retro-computer .computerButtonOff {
+  left: 8%;
+}
+.retro-computer .computerButtonOn {
+  left: 48%;
+  background-color: #1bcf60;
+}
+.retro-computer .offIndicator {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: 16px;
+  left: 5px;
+  border-radius: 50%;
+  border: 1px #fff solid;
+}
+.retro-computer .onIndicator {
+  position: absolute;
+  width: 0;
+  height: 6px;
+  top: 16px;
+  left: 28px;
+  border-right: 1px #fff solid;
+}
+.retro-computer .computer .powerLight {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  right: 13px;
+  top: 38px;
+}
+
+.retro-computer .output {
+  position: absolute;
+  width: 95%;
+  height: 80%;
+  top: 20px;
+  left: 10px;
+  color: #33ff66;
+  font-size: 12px;
+  display: none;
+  font-family: "VT323", monospace;
+  overflow: auto;
+}
+.retro-computer .popup {
+  position: absolute;
+  width: 110px;
+  height: 32px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  border: 1px #33ff66 solid;
+  border-top: 5px #33ff66 solid;
+  text-align: center;
+  line-height: 30px;
+  display: block;
+  animation: popup 1s infinite;
+}
+@keyframes popup {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

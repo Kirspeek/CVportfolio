@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Space_Mono } from "next/font/google";
+import { Inter, Space_Mono, Fira_Sans } from "next/font/google";
 import "../styles/globals.css";
 import { TooltipProvider } from "../context/TooltipContext";
 import Script from "next/script";
@@ -17,6 +17,13 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
+const firaSans = Fira_Sans({
+  variable: "--font-fira-sans",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Chart Dashboard - Analytics & Insights",
   description:
@@ -31,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceMono.variable}`}
+      className={`${inter.variable} ${spaceMono.variable} ${firaSans.variable}`}
       suppressHydrationWarning
     >
       <head>

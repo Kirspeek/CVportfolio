@@ -1,4 +1,4 @@
-export type SectionKey = "dashboard" | "projects" | "about" | "experience";
+export type SectionKey = "dashboard" | "about" | "experience" | "projects" | "contact";
 
 export type HeaderLink = {
   label: string;

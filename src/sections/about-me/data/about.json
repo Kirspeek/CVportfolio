@@ -1,0 +1,22 @@
+{
+  "title": "About me",
+  "sectionNumber": "01",
+  "panels": [
+    "responsive and user-centric applications with React/NextJS and TypeScript",
+    "Developing APIs and backend services using Nest.js and Node.js",
+    "ensuring seamless integration and high-performance communication",
+    "Developing and maintaining SOAP and RESTful web services",
+    "database management using MongoDB and querying",
+    "Proven ability to work independently to push tasks forward"
+  ],
+  "largePanels": [
+    "Crafting responsive, user-focused web applications using React/Next.js and TypeScript <br/> Delivering intuitive and engaging interfaces optimized for performance",
+    "Building robust APIs and backend services with Nest.js and Node.js <br/> ensuring seamless integration, secure communication, and high performance for scalable applications",
+    "Maintaining reliable SOAP and RESTful web services, managing databases with MongoDB, and leveraging effective querying techniques </br> Proven ability to work independently to drive projects forward"
+  ],
+  "meta": {
+    "domain": "kirspeek.dev",
+    "portfolio": "2025 professional portfolio"
+  }
+}
+

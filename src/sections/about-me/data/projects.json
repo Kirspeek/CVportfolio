@@ -1,0 +1,52 @@
+{
+  "projects": [
+    {
+      "id": "shopapp",
+      "title": "ShopApp",
+      "description": "A feature‑rich online store where users browse, search and purchase products. Built as a monorepo with separate client (React + MUI) and server (Strapi) packages.",
+      "liveUrl": "https://shopapp-eight.vercel.app/",
+      "githubUrl": "https://github.com/Kirspeek/shopapp",
+      "frontend": [
+        "React + MUI with Redux Toolkit",
+        "React Router with responsive UI",
+        "Product catalog, details, cart, Stripe payments"
+      ],
+      "backend": [
+        "Strapi/Node.js",
+        "REST API with authentication and permissions",
+        "SQLite by default; MySQL/Postgres ready"
+      ],
+      "features": [
+        "Browse by category; rich product pages",
+        "Responsive cart menu and wishlist",
+        "Secure checkout and order confirmation"
+      ]
+    },
+    {
+      "id": "chart-dashboard",
+      "title": "Chart Dashboard — Advanced Analytics",
+      "description": "A modern, feature‑rich analytics dashboard built with Next.js 15, TypeScript, and cutting‑edge visualization libraries. This platform combines real‑time data visualization, interactive widgets, and a seamless UX across devices.",
+      "liveUrl": "https://my-chart-dashboard.vercel.app/",
+      "githubUrl": "https://github.com/Kirspeek/my-chart-dashboard",
+      "status": "In active development; new components and features are added continuously while existing functionality is refined and optimized.",
+      "keyFeatures": [
+        "Advanced charts: Line, Bar, Radar, Chord, Sankey, Bubble",
+        "Real‑time performance metrics, timelines, and heatmaps",
+        "Spotify integration: search, play, playlists, favorites",
+        "Financial widgets: wallet, spending analytics, cards, timeline",
+        "Weather & maps: multi‑city forecasts, Mapbox, animations",
+        "Time & productivity: world clock, timer, calendar, timeline rings",
+        "Responsive design with PWA, dark/light themes, and animations"
+      ],
+      "techStack": [
+        "Next.js 15 (App Router), TypeScript, Tailwind CSS",
+        "Recharts & D3.js, Mapbox GL JS, Three.js",
+        "WebSockets for live data; Framer Motion for animations",
+        "Spotify API, OpenWeatherMap, payment validation, geolocation"
+      ],
+      "desktopWidth": 1440,
+      "desktopHeight": 900
+    }
+  ]
+}
+

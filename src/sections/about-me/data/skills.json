@@ -1,0 +1,91 @@
+{
+  "palette": [
+    "#81a1ff",
+    "#ecec84",
+    "#ffb69b",
+    "#ffacbb",
+    "#8bc3e5",
+    "#c8bcff",
+    "#7ccaae"
+  ],
+  "categories": [
+    {
+      "title": "Frontend",
+      "items": [
+        "React",
+        "Next.js",
+        "Redux",
+        "Redux Toolkit",
+        "Vue.js",
+        "React libraries",
+        "HTML/CSS",
+        "Tailwind CSS",
+        "Bootstrap",
+        "React Router",
+        "React Query",
+        "Zod",
+        "React Hook Form",
+        "Radix UI",
+        "Material UI (MUI)",
+        "Framer Motion",
+        "Next.js App Router"
+      ]
+    },
+    {
+      "title": "Backend",
+      "items": [
+        "Node.js",
+        "NestJS",
+        "Express.js",
+        "TypeScript",
+        "JavaScript",
+        "SQL",
+        "NoSQL",
+        "SQLite",
+        "MongoDB",
+        "Prisma",
+        "PostgreSQL",
+        "Redis",
+        "Socket.io",
+        "GraphQL (Apollo)",
+        "Auth.js (NextAuth)"
+      ]
+    },
+    {
+      "title": "Tools",
+      "items": [
+        "AWS",
+        "GCP",
+        "Docker",
+        "Kubernetes",
+        "Git",
+        "VS Code",
+        "Storybook",
+        "Unit testing",
+        "Monorepo",
+        "Postman",
+        "Insomnia",
+        "MongoDB Compass",
+        "AI basics",
+        "Testing Library",
+        "Vitest",
+        "Playwright",
+        "MSW",
+        "GitHub Actions",
+        "Sentry",
+        "Vite"
+      ]
+    },
+    {
+      "title": "Languages",
+      "items": [
+        "English (C2)",
+        "Ukrainian (n)",
+        "Russian (n)",
+        "Polish (B2)",
+        "Italian (B1)"
+      ]
+    }
+  ]
+}
+

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Sidebar from "@/components/Sidebar";
 import {
   ClockWidget,
@@ -38,7 +38,7 @@ import { WidgetHeightProvider } from "../context/WidgetHeightContext";
 import { WidgetStateProvider } from "../context/WidgetStateContext";
 import { SearchProvider } from "../context/SearchContext";
 import FilteredWidgetsGrid from "../components/common/FilteredWidgetsGrid";
-import MobileGridLayout from "../components/common/MobileGridLayout";
+import { AboutSection, ProjectsSection, ContactForm } from "@/sections/about-me";
 
 const cityMap: CityMap = {
   "America/New_York": "New York",
@@ -101,11 +101,12 @@ export default function Home() {
   const [selectedZone, setSelectedZone] = useState("Europe/London");
   const selectedCity = cityMap[selectedZone] || "London";
   const [mounted, setMounted] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [activeSection, setActiveSection] = useState<
-    "dashboard" | "projects" | "about" | "experience"
-  >("dashboard");
+    "dashboard" | "about" | "experience" | "projects" | "contact"
+  >("about");
+  const [embedMode, setEmbedMode] = useState(false);
+  const [forceClosedSidebar, setForceClosedSidebar] = useState(false);
 
   const data = useDashboardData();
 
@@ -130,107 +131,108 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const isEmbed = params.get("embed") === "1";
+      const sidebar = params.get("sidebar");
+      setEmbedMode(isEmbed);
+      setForceClosedSidebar(sidebar === "closed");
+      
+      // Scroll to about section on initial load
+      const hash = window.location.hash;
+      if (!hash || hash === "#") {
+        setTimeout(() => {
+          const aboutEl = document.getElementById("about");
+          if (aboutEl) {
+            aboutEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+      }
+
+    }
+  }, []);
+
+  const handleSectionChange = useCallback((
+    s: "dashboard" | "about" | "experience" | "projects" | "contact"
+  ) => {
+    if (typeof window !== "undefined") {
+      if (s === "dashboard") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setActiveSection("dashboard");
+      } else if (s === "experience") {
+        const experienceEl = document.getElementById("experience");
+        if (experienceEl) {
+          requestAnimationFrame(() => {
+            experienceEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        } else {
+          const aboutEl = document.getElementById("about");
+          if (aboutEl) {
+            requestAnimationFrame(() => {
+              aboutEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
+          }
+        }
+        setActiveSection("about");
+      } else {
+        const el = document.getElementById(s);
+        if (el) {
+          requestAnimationFrame(() => {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        }
+        setActiveSection(s);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Listen for dashboard navigation from child components
+      const handleNavigateToDashboard = () => {
+        handleSectionChange("dashboard");
+      };
+      window.addEventListener("navigateToDashboard", handleNavigateToDashboard);
+      return () => {
+        window.removeEventListener("navigateToDashboard", handleNavigateToDashboard);
+      };
+    }
+  }, [handleSectionChange]);
+
   if (!data.metricCards) return <div>Loading dashboard data...</div>;
 
-  const handleSectionChange = (
-    s: "dashboard" | "projects" | "about" | "experience"
-  ) => {
-    setActiveSection(s);
-    if (typeof window !== "undefined" && s !== "dashboard") {
-      const el = document.getElementById(s);
-      if (el) {
-        requestAnimationFrame(() => {
-          el.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      }
-    } else if (typeof window !== "undefined" && s === "dashboard") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
   if (isMobile) {
     return (
       <SearchProvider>
         <div className="flex min-h-screen bg-[var(--background)]">
-          {activeSection === "dashboard" && (
-            <>
-              <Sidebar
-                isOpen={sidebarOpen}
-                onClose={() => setSidebarOpen(false)}
-              />
-              {sidebarOpen && (
-                <div
-                  className="fixed inset-0 z-30 bg-black/30 backdrop-blur-sm transition-opacity duration-300 lg:hidden"
-                  onClick={() => setSidebarOpen(false)}
-                />
-              )}
-            </>
-          )}
 
           <div className="flex-1 flex flex-col overflow-hidden">
             <HeaderWidget
               defaultSection={activeSection}
               onSectionChange={handleSectionChange}
               sections={[
-                { key: "dashboard", label: "Chart Dashboard" },
-                { key: "projects", label: "Projects" },
                 { key: "about", label: "About me" },
-                { key: "experience", label: "Work experience" },
+                { key: "experience", label: "Experience" },
+                { key: "projects", label: "Projects" },
+                { key: "contact", label: "Contact" },
               ]}
             />
 
             {activeSection === "dashboard" ? (
-              <MobileGridLayout
-                data={data}
-                selectedZone={selectedZone}
-                setSelectedZone={setSelectedZone}
-                selectedCity={selectedCity}
-                setSidebarOpen={setSidebarOpen}
-              />
+              <main className="flex-1 overflow-y-auto px-6 py-8 bg-[var(--background)]">
+                <div className="max-w-5xl mx-auto">
+                  <section id="dashboard">
+                    <div>Redirecting to dashboard...</div>
+                  </section>
+                </div>
+              </main>
             ) : (
               <main className="flex-1 overflow-y-auto px-6 py-8 bg-[var(--background)]">
                 <div className="max-w-5xl mx-auto space-y-12">
-                  <section id="about" className="h-screen flex items-center">
-                    <div>
-                      <h2
-                        className="text-2xl font-extrabold primary-text"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        About me
-                      </h2>
-                      <p className="secondary-text mt-2">
-                        Content coming soon.
-                      </p>
-                    </div>
-                  </section>
-                  <section id="projects" className="h-screen flex items-center">
-                    <div>
-                      <h2
-                        className="text-2xl font-extrabold primary-text"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        Projects
-                      </h2>
-                      <p className="secondary-text mt-2">
-                        Content coming soon.
-                      </p>
-                    </div>
-                  </section>
-                  <section
-                    id="experience"
-                    className="h-screen flex items-center"
-                  >
-                    <div>
-                      <h2
-                        className="text-2xl font-extrabold primary-text"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        Work experience
-                      </h2>
-                      <p className="secondary-text mt-2">
-                        Content coming soon.
-                      </p>
-                    </div>
-                  </section>
+                  <AboutSection id="about" />
+                  <ProjectsSection id="projects" />
+                  <ContactForm id="contact" />
                 </div>
               </main>
             )}
@@ -243,7 +245,7 @@ export default function Home() {
   return (
     <SearchProvider>
       <div className="flex min-h-screen bg-[var(--background)]">
-        {activeSection === "dashboard" && (
+        {activeSection === "dashboard" && !embedMode && !forceClosedSidebar && (
           <Sidebar isOpen={true} onClose={() => {}} />
         )}
 
@@ -257,66 +259,69 @@ export default function Home() {
         ) : null}
 
         <div className="flex-1 flex flex-col overflow-hidden">
-          <main className="flex-1 overflow-y-auto px-6 py-8 bg-[var(--background)]">
-            <div className="max-w-7xl mx-auto">
-              {/* Header always at top */}
-              <div className="grid grid-cols-1 gap-8 items-stretch mb-8">
-                <div className="h-full">
-                  <HeaderWidget
-                    defaultSection={activeSection}
-                    onSectionChange={handleSectionChange}
-                    sections={[
-                      { key: "dashboard", label: "Chart Dashboard" },
-                      { key: "projects", label: "Projects" },
-                      { key: "about", label: "About me" },
-                      { key: "experience", label: "Work experience" },
-                    ]}
-                  />
+          <main className="flex-1 overflow-y-auto px-0 py-0 bg-[var(--background)]">
+            <div>
+              {/* Header at top unless we are embedding */}
+              {!embedMode && (
+                <div className="grid grid-cols-1 gap-8 items-stretch mb-8 px-6">
+                  <div className="h-full">
+                    <HeaderWidget
+                      defaultSection={activeSection}
+                      onSectionChange={handleSectionChange}
+                      sections={[
+                        { key: "about", label: "About me" },
+                        { key: "experience", label: "Experience" },
+                        { key: "projects", label: "Projects" },
+                        { key: "contact", label: "Contact" },
+                      ]}
+                    />
+                  </div>
                 </div>
-              </div>
-
-              {mounted && activeSection === "dashboard" && (
-                <>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-                    <div className="h-full">
-                      <ClockWidget
-                        selectedZone={selectedZone}
-                        setSelectedZone={setSelectedZone}
-                        isMobile={false}
-                      />
-                    </div>
-
-                    <div className="h-full flex flex-col">
-                      <div className="flex-none h-72 2xl:h-96">
-                        {isMobile ? (
-                          <WeatherWidgetMobile city={selectedCity} />
-                        ) : (
-                          <WeatherWidget city={selectedCity} />
-                        )}
-                      </div>
-                      <div className="h-2"></div>{" "}
-                      <div className="flex-1 min-h-0">
-                        <TimerWidget className="h-full" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-8 my-8">
-                    <MusicWidget title="Spotify Music Player" compact={true} />
-                  </div>
-
-                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-6 lg:mt-8 mb-8">
-                    <div className="h-full">
-                      <MapWidget />
-                    </div>
-                    <div className="h-full">
-                      <CalendarWidget />
-                    </div>
-                  </div>
-                </>
               )}
 
-              {activeSection === "dashboard" && (
+              {activeSection === "dashboard" ? (
+                <section id="dashboard">
+                {mounted && (
+                  <>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                      <div className="h-full">
+                        <ClockWidget
+                          selectedZone={selectedZone}
+                          setSelectedZone={setSelectedZone}
+                          isMobile={false}
+                        />
+                      </div>
+
+                      <div className="h-full flex flex-col">
+                        <div className="flex-none h-72 2xl:h-96">
+                          {isMobile ? (
+                            <WeatherWidgetMobile city={selectedCity} />
+                          ) : (
+                            <WeatherWidget city={selectedCity} />
+                          )}
+                        </div>
+                        <div className="h-2"></div>{" "}
+                        <div className="flex-1 min-h-0">
+                          <TimerWidget className="h-full" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-8 my-8">
+                      <MusicWidget title="Spotify Music Player" compact={true} />
+                    </div>
+
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-6 lg:mt-8 mb-8">
+                      <div className="h-full">
+                        <MapWidget />
+                      </div>
+                      <div className="h-full">
+                        <CalendarWidget />
+                      </div>
+                    </div>
+                  </>
+                )}
+
                 <WidgetHeightProvider>
                   <WidgetStateProvider>
                     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mt-8 mb-6 lg:mb-8 items-stretch md:justify-items-center lg:justify-items-stretch">
@@ -332,9 +337,7 @@ export default function Home() {
                     </div>
                   </WidgetStateProvider>
                 </WidgetHeightProvider>
-              )}
 
-              {activeSection === "dashboard" && (
                 <WidgetHeightProvider>
                   <WidgetStateProvider>
                     <div className="grid grid-cols-1 gap-8 my-8">
@@ -344,17 +347,13 @@ export default function Home() {
                     </div>
                   </WidgetStateProvider>
                 </WidgetHeightProvider>
-              )}
 
-              {activeSection === "dashboard" && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8 my-8">
                   {(data.metricCards ?? []).map((metric, index) => (
                     <MetricWidget key={index} metric={metric} index={index} />
                   ))}
                 </div>
-              )}
 
-              {activeSection === "dashboard" && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
                   <LineChartWidget
                     data={data.salesData ?? []}
@@ -365,9 +364,7 @@ export default function Home() {
                     title="Quarterly Overview"
                   />
                 </div>
-              )}
 
-              {activeSection === "dashboard" && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 my-8">
                   <RadarChartWidget
                     data={
@@ -380,9 +377,7 @@ export default function Home() {
                   />
                   <WorkInProgressWidget />
                 </div>
-              )}
 
-              {activeSection === "dashboard" && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 my-8">
                   <div className="lg:col-span-2 xl:col-span-2 h-full">
                     <RecentUsersWidget
@@ -397,9 +392,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-              )}
 
-              {activeSection === "dashboard" && (
                 <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 my-8">
                   <div className="lg:col-span-2 xl:col-span-2 h-full">
                     <SankeyChartWidget
@@ -416,9 +409,7 @@ export default function Home() {
                     />
                   </div>
                 </div>
-              )}
 
-              {activeSection === "dashboard" && (
                 <div className="grid grid-cols-1 gap-8 my-8">
                   <div className="h-full">
                     <BubbleChartWidget
@@ -428,58 +419,16 @@ export default function Home() {
                     />
                   </div>
                 </div>
-              )}
 
-              {activeSection === "dashboard" && (
                 <div className="grid grid-cols-1 gap-8 my-8">
                   <EnhancedTimelineWidget />
                 </div>
-              )}
-
-              {activeSection !== "dashboard" && (
-                <div className="max-w-5xl mx-auto space-y-12">
-                  <section id="about" className="h-screen flex items-center">
-                    <div>
-                      <h2
-                        className="text-2xl font-extrabold primary-text"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        About me
-                      </h2>
-                      <p className="secondary-text mt-2">
-                        Content coming soon.
-                      </p>
-                    </div>
-                  </section>
-                  <section id="projects" className="h-screen flex items-center">
-                    <div>
-                      <h2
-                        className="text-2xl font-extrabold primary-text"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        Projects
-                      </h2>
-                      <p className="secondary-text mt-2">
-                        Content coming soon.
-                      </p>
-                    </div>
-                  </section>
-                  <section
-                    id="experience"
-                    className="h-screen flex items-center"
-                  >
-                    <div>
-                      <h2
-                        className="text-2xl font-extrabold primary-text"
-                        style={{ fontFamily: "var(--font-mono)" }}
-                      >
-                        Work experience
-                      </h2>
-                      <p className="secondary-text mt-2">
-                        Content coming soon.
-                      </p>
-                    </div>
-                  </section>
+              </section>
+              ) : (
+                <div className="space-y-12">
+                  <AboutSection id="about" />
+                  <ProjectsSection id="projects" />
+                  <ContactForm id="contact" />
                 </div>
               )}
             </div>

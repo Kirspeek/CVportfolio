@@ -1,0 +1,58 @@
+{
+  "jobs": [
+    {
+      "title": "Senior React/Node Developer",
+      "company": "Zazmic Inc",
+      "location": "California, United States",
+      "type": "Full‑Time",
+      "period": "10/2025 – now",
+      "bullets": [
+        "Developing scalable web applications using React and Node.js",
+        "Building responsive and performant user interfaces",
+        "Implementing backend services and APIs",
+        "Collaborating with cross-functional teams to deliver high-quality solutions"
+      ]
+    },
+    {
+      "title": "Lead Front‑End Developer",
+      "company": "Buildeezy",
+      "location": "Singapore",
+      "type": "Full‑Time",
+      "period": "08/2024 – 07/2025",
+      "bullets": [
+        "Head Frontend role for a modern web app focused on responsive, user‑friendly interfaces",
+        "Integrated payments, messaging, social features, notifications and DB‑driven modules",
+        "Directed platform development across FE/BE, planning and delivery",
+        "Designed and implemented key user‑facing components with accessibility and performance in mind",
+        "Assigned work, reviewed PRs, ensured quality and cadence across the team",
+        "Contributed from concept to release to deliver a fully functional platform"
+      ]
+    },
+    {
+      "title": "Full‑Stack Developer",
+      "company": "Admixer Technologies",
+      "location": "Ukraine",
+      "type": "Full‑Time",
+      "period": "04/2022 – 06/2024",
+      "bullets": [
+        "Full‑stack development and support of multiple company products",
+        "Architecture design for new Back‑End and Front‑End frameworks",
+        "Integration of new frameworks into existing products",
+        "Development of internal DMP interface"
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Infopulse",
+      "location": "Kyiv, Ukraine",
+      "type": "Full‑Time",
+      "period": "12/2020 – 04/2022",
+      "bullets": [
+        "Contributed to scalable systems for clients in Western Europe",
+        "Leveraged cloud services and monitoring to meet business needs",
+        "Completed internship and shipped features aligned with client requirements"
+      ]
+    }
+  ]
+}
+

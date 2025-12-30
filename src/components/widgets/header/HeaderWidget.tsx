@@ -2,9 +2,8 @@
 
 import React from "react";
 import { Header as UIHeader } from "../../../../packages/ui-header/src";
+import type { SectionKey } from "../../../../packages/ui-header/src/types";
 import WidgetBase from "@/components/common/WidgetBase";
-
-type SectionKey = "dashboard" | "projects" | "about" | "experience";
 
 export default function HeaderWidget({
   defaultSection = "dashboard",

@@ -1,0 +1,91 @@
+{
+  "hero": {
+    "greeting": "HEY I'M",
+    "name": "IRYNA CHEREPENKO",
+    "title": "SOFTWARE ENGINEER",
+    "tagline": "SPECIALIZED IN BUILDING EXCEPTIONAL DIGITAL PLATFORMS.",
+    "meta": {
+      "left": {
+        "text": "Young professional",
+        "link": {
+          "text": "About ↗",
+          "href": "#about"
+        }
+      },
+      "center": {
+        "text": "Currently working as a",
+        "textLine2": "fullstack developer",
+        "link": {
+          "text": "Projects ↗",
+          "href": "#projects"
+        }
+      },
+      "right": {
+        "text": "Based in Italy, Europe",
+        "textLine2": "originally from Ukraine",
+        "textLine3": "© 2025",
+        "link": {
+          "text": "Experience ↗",
+          "href": "#experience"
+        }
+      }
+    }
+  },
+  "about": {
+    "title": "About me",
+    "sectionNumber": "01",
+    "description": {
+      "title": "Product‑minded Frontend with Backend superpowers",
+      "items": {
+        "mobile": [
+          "Full‑Stack Developer with 5 years of commercial experience.",
+          "Front end concentrated on building UI with React & Next.js. Solid understanding of modern web architecture. Widgets and reusable UI systems.",
+          "Backend when needed: Node.js / NestJS.",
+          "Experience in monorepos and classic single‑repo projects.",
+          "Passionate about Agile product development; focused on shipping features that make real impact."
+        ],
+        "tablet": [
+          "Full‑Stack Developer with 5 years of commercial experience.",
+          "Front end concentrated on building UI with React & Next.js. Solid understanding of modern web architecture. Widgets and reusable UI systems.",
+          "Backend when needed: Node.js / NestJS.",
+          "Experience in monorepos and classic single‑repo projects.",
+          "Passionate about Agile product development; focused on shipping features that make real impact."
+        ],
+        "desktop": [
+          "Full‑Stack Developer with 5 years of commercial experience.",
+          "Front end concentrated on building UI with React & Next.js. Solid understanding of modern web architecture. Widgets and reusable UI systems.",
+          "Backend when needed: Node.js / NestJS.",
+          "Experience working in both monorepos (separating products/packages for shared code and clean ownership) and classic single‑repo projects.",
+          "Passionate about Agile product development; focused on shipping features that make real impact.",
+          "Strong soft skills — comfortable in pizza‑teams, mentoring interns/juniors, and driving work independently with high standards."
+        ]
+      }
+    }
+  },
+  "skills": {
+    "title": "Skills"
+  },
+  "workExperience": {
+    "title": "Work Experience",
+    "now": {
+      "label": "now",
+      "next": "Your company — next"
+    }
+  },
+  "projects": {
+    "title": "02 · My Projects",
+    "buttons": {
+      "liveDemo": "Live ↗",
+      "github": "GitHub ↗"
+    },
+    "sections": {
+      "frontend": "frontend",
+      "backend": "backend",
+      "features": "features",
+      "projectStatus": "Project Status",
+      "keyFeatures": "Key Features",
+      "techStack": "Tech Stack"
+    }
+  }
+}
+
