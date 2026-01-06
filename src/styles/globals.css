@@ -99,9 +99,11 @@ h6 {
 .text-black {
   color: var(--primary-text);
 }
+
 .text-gray {
   color: var(--muted-text);
 }
+
 .text-gray-light {
   color: var(--secondary-text);
 }
@@ -460,7 +462,7 @@ h6 {
 }
 
 /* Compact widget styles for search results */
-.filtered-widgets-container .widget-container > div {
+.filtered-widgets-container .widget-container>div {
   max-width: 100%;
   margin: 0 auto;
 }
@@ -478,12 +480,21 @@ h6 {
 
 /* Hide scrollbar while maintaining scroll functionality */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
+  /* Safari and Chrome */
+}
+
+/* Name block styling for About Hero section */
+.name-block {
+  position: relative;
+  display: inline-block;
 }
 
 /* Line chart specific fixes only */
@@ -494,7 +505,7 @@ h6 {
   overflow: hidden !important;
 }
 
-.line-chart-widget > div {
+.line-chart-widget>div {
   flex: 1 !important;
   min-height: 0 !important;
   display: flex !important;
@@ -502,7 +513,7 @@ h6 {
 }
 
 /* Ensure metric cards fit properly in line chart */
-.line-chart-widget .grid-cols-2 > div {
+.line-chart-widget .grid-cols-2>div {
   min-height: 0 !important;
   overflow: hidden !important;
 }
@@ -513,4 +524,42 @@ h6 {
   flex: 1 !important;
   display: flex !important;
   flex-direction: column !important;
+}
+
+@keyframes name-color-cycle {
+  0% {
+    color: #81a1ff;
+  }
+
+  14% {
+    color: #ecec84;
+  }
+
+  28% {
+    color: #ffb69b;
+  }
+
+  42% {
+    color: #ffacbb;
+  }
+
+  57% {
+    color: #8bc3e5;
+  }
+
+  71% {
+    color: #c8bcff;
+  }
+
+  85% {
+    color: #7ccaae;
+  }
+
+  100% {
+    color: #81a1ff;
+  }
+}
+
+.animate-name-color {
+  animation: name-color-cycle 16s infinite;
 }

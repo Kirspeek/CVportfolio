@@ -6,9 +6,8 @@ import type { SectionKey } from "../../../../packages/ui-header/src/types";
 import WidgetBase from "@/components/common/WidgetBase";
 
 export default function HeaderWidget({
-  defaultSection = "dashboard",
+  defaultSection = "about",
   onSectionChange,
-  sections,
 }: {
   defaultSection?: SectionKey;
   onSectionChange?: (s: SectionKey) => void;
@@ -16,10 +15,20 @@ export default function HeaderWidget({
 }) {
   return (
     <div className="widget-container">
-      <WidgetBase className="rounded-2xl" style={{ padding: 16 }}>
+      <WidgetBase
+        className="rounded-2xl"
+        style={{
+          padding: 16,
+          background: 'transparent',
+          border: 'none',
+          boxShadow: 'none',
+          backdropFilter: 'none',
+          WebkitBackdropFilter: 'none'
+        }}
+      >
         <UIHeader
           defaultSection={defaultSection}
-          sections={sections}
+          sections={[]}
           onSectionChange={onSectionChange}
           showThemeToggle
           contactEmail="cherepenko.iryna@gmail.com"

@@ -8,25 +8,25 @@
       "left": {
         "text": "Young professional",
         "link": {
-          "text": "About ↗",
-          "href": "#about"
+          "text": "Projects ↗",
+          "href": "#projects"
         }
       },
       "center": {
         "text": "Currently working as a",
         "textLine2": "fullstack developer",
         "link": {
-          "text": "Projects ↗",
-          "href": "#projects"
+          "text": "Experience ↗",
+          "href": "#experience"
         }
       },
       "right": {
-        "text": "Based in Italy, Europe",
+        "text": "Based in Europe",
         "textLine2": "originally from Ukraine",
-        "textLine3": "© 2025",
+        "textLine3": "© 2026",
         "link": {
-          "text": "Experience ↗",
-          "href": "#experience"
+          "text": "Contact ↗",
+          "href": "#contact"
         }
       }
     }
@@ -88,4 +88,3 @@
     }
   }
 }
-

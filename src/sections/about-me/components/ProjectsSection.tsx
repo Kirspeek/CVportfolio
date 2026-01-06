@@ -278,13 +278,10 @@ export default function ProjectsSection({
                   </div>
                 </div>
                 <div className="flex items-center gap-2 text-xs">
-                  <button
-                    onClick={() => {
-                      if (typeof window !== "undefined") {
-                        const event = new CustomEvent("navigateToDashboard");
-                        window.dispatchEvent(event);
-                      }
-                    }}
+                  <a
+                    href={chartDashboard.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
                     className="px-2 py-1 border rounded"
                     style={{
                       fontFamily: "var(--font-mono)",
@@ -292,11 +289,11 @@ export default function ProjectsSection({
                       color: "var(--primary-text)",
                       backgroundColor: "var(--background)",
                       borderColor: "#bdbdbd",
-                      cursor: "pointer",
+                      textDecoration: "none",
                     }}
                   >
                     {projects.buttons.liveDemo}
-                  </button>
+                  </a>
                   <a
                     href={chartDashboard.githubUrl}
                     target="_blank"

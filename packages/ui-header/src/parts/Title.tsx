@@ -12,7 +12,7 @@ export default function Title({ text, fontSize, className }: TitleProps) {
       className={`primary-text${className ? ` ${className}` : ""}`}
       style={{
         fontFamily: "var(--font-mono)",
-        fontWeight: 900,
+        fontWeight: 600,
         letterSpacing: "0.01em",
         fontSize,
       }}

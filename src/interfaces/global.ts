@@ -1,9 +1,7 @@
-import type { SpotifyNamespace } from "@/interfaces/spotify";
-
 declare global {
   interface Window {
-    onSpotifyWebPlaybackSDKReady?: () => void;
-    Spotify?: SpotifyNamespace;
+    // Global window types can be added here
+    [key: string]: unknown;
   }
 }
 

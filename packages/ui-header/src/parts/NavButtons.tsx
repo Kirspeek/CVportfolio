@@ -35,9 +35,9 @@ export default function NavButtons({
             <a
               key={key}
               href={getSectionHref(key)}
-              className={`widget-button rounded-full ${paddingClass} ${textSizeClass}`}
+              className={`widget-button rounded-full ${textSizeClass}`}
               style={{
-                fontWeight: 700,
+                fontWeight: 500,
                 letterSpacing: "0.01em",
                 border: `${borderWidth}px solid ${color}`,
                 color,
@@ -45,6 +45,8 @@ export default function NavButtons({
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
+                padding: paddingClass === "px-2 py-1" ? "5px 10px" : paddingClass === "px-2.5 py-1" ? "5px 12px" : paddingClass === "px-2.5 py-1.5" ? "6px 12px" : paddingClass === "px-3 py-1.5" ? "6px 14px" : "5px 10px",
+                fontSize: textSizeClass === "text-xs" ? "0.875rem" : textSizeClass === "text-sm" ? "0.875rem" : "1rem",
               }}
               onClick={(e) => {
                 const href = getSectionHref(key);
@@ -61,13 +63,15 @@ export default function NavButtons({
               key={key}
               type="button"
               onClick={() => onSelect(key)}
-              className={`widget-button rounded-full ${paddingClass} ${textSizeClass}`}
+              className={`widget-button rounded-full ${textSizeClass}`}
               style={{
-                fontWeight: 700,
+                fontWeight: 500,
                 letterSpacing: "0.01em",
                 border: `${borderWidth}px solid ${color}`,
                 color,
                 background: "transparent",
+                padding: paddingClass === "px-2 py-1" ? "5px 10px" : paddingClass === "px-2.5 py-1" ? "5px 12px" : paddingClass === "px-2.5 py-1.5" ? "6px 12px" : paddingClass === "px-3 py-1.5" ? "6px 14px" : "5px 10px",
+                fontSize: textSizeClass === "text-xs" ? "0.875rem" : textSizeClass === "text-sm" ? "0.875rem" : "1rem",
               }}
             >
               {labelMap.get(key) ?? key}

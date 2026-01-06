@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import "../styles/RetroComputer.css";
 import type { ProjectShowcaseCardProps } from "../types";
 
 export default function ProjectShowcaseCard({

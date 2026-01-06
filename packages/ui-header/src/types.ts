@@ -1,4 +1,4 @@
-export type SectionKey = "dashboard" | "about" | "experience" | "projects" | "contact";
+export type SectionKey = "about" | "experience" | "projects" | "contact";
 
 export type HeaderLink = {
   label: string;
@@ -9,18 +9,8 @@ export type HeaderLink = {
 
 export type HeaderProps = {
   title?: string;
-  onSearch?: (value: string) => void;
-  searchPlaceholder?: string;
-  showNotifications?: boolean;
-  showUser?: boolean;
   contactEmail?: string;
   contactLinks?: HeaderLink[];
-  rightActions?: React.ReactNode;
-  renderSearchResults?: (
-    value: string,
-    isMobile: boolean,
-    close: () => void
-  ) => React.ReactNode;
   pill?: boolean;
   className?: string;
   defaultSection?: SectionKey;
@@ -30,10 +20,6 @@ export type HeaderProps = {
   }>;
   onSectionChange?: (section: SectionKey) => void;
   getSectionHref?: (section: SectionKey) => string | undefined;
-  loginHref?: string;
-  signupHref?: string;
-  onLoginClick?: () => void;
-  onSignupClick?: () => void;
   showThemeToggle?: boolean;
   isDark?: boolean;
   onToggleTheme?: () => void;

@@ -25,9 +25,9 @@ const firaSans = Fira_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Chart Dashboard - Analytics & Insights",
+  title: "Iryna Cherepenko - Portfolio",
   description:
-    "A modern analytics dashboard with interactive charts and real-time data visualization",
+    "Software Engineer specialized in building exceptional digital platforms",
 };
 
 export default function RootLayout({

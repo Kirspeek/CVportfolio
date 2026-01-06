@@ -38,8 +38,15 @@ export class APIError extends Error {
   }
 }
 
+export interface ForecastDay {
+  date: string;
+  temp: number;
+  condition: string;
+  icon: string;
+}
+
 export interface CachedWeatherData {
-  forecast: import("./widgets").ForecastDay[];
+  forecast: ForecastDay[];
   coords: { lat: number; lon: number } | null;
   timestamp: number;
   loading: boolean;

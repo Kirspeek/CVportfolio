@@ -1,6 +1,0 @@
-[
-  { "name": "Q1", "sales": 2500, "revenue": 25000 },
-  { "name": "Q2", "sales": 3200, "revenue": 35000 },
-  { "name": "Q3", "sales": 4100, "revenue": 42000 },
-  { "name": "Q4", "sales": 3800, "revenue": 38000 }
-]

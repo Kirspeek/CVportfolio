@@ -1,6 +1,6 @@
 .retro-card {
   display: inline-block;
-  padding: 48px 56px;
+  padding: 0;
   background: #efefef;
   border: 6px solid #bdbdbd;
   border-radius: 0;
@@ -9,6 +9,17 @@
     inset 0 2px 0 rgba(255, 255, 255, 0.5);
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Add padding to retro-card when inside AboutDescription */
+.retro-computer-container .retro-card {
+  padding: 2rem !important;
+}
+
+@media (max-width: 768px) {
+  .retro-computer-container .retro-card {
+    padding: 1.5rem !important;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,7 +35,7 @@
 /* Compact card padding on small screens so total width never exceeds viewport */
 @media (max-width: 425px) {
   .retro-card {
-    padding: 16px;
+    padding: 0;
     border-width: 4px;
   }
 }

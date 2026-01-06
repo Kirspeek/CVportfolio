@@ -79,6 +79,7 @@ export default function SkillsSection({
     );
   }
 
+
   return (
     <AboutInfoBox
       style={{
@@ -87,7 +88,7 @@ export default function SkillsSection({
         ...style,
       }}
     >
-      <div style={{ padding: "1rem" }}>
+      <div style={{ padding: "1rem", paddingTop: "1rem", paddingBottom: "1rem" }}>
         <h3
           className="m-0"
           style={{
@@ -100,13 +101,13 @@ export default function SkillsSection({
           {skills.title}
         </h3>
 
-        <div className="mt-3 space-y-3">
-          {categories.map((group, gi) => {
-            const isLanguages = group.title === "Languages";
+        <div className="mt-3 space-y-4">
+          {categories.map((group) => {
+            let colorIndex = 0;
             return (
-              <div key={group.title} className="space-y-2">
+              <div key={group.title} className="space-y-0">
                 <h4
-                  className="m-0"
+                  className="m-0 mb-2"
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontWeight: 700,
@@ -118,38 +119,39 @@ export default function SkillsSection({
                 >
                   {group.title}
                 </h4>
-                <div
-                  className="flex flex-wrap"
-                  style={{ gap: isLanguages ? 4 : 6, padding: "0 3px" }}
-                >
-                  {group.items.map((label, i) => (
-                    <div
-                      key={`${group.title}-${label}`}
-                      className="rounded-[3px]"
-                      style={{
-                        background: palette[(gi + i) % palette.length],
-                        opacity: 0.9,
-                      }}
-                    >
-                      <span
-                        className="block"
+                <div className="space-y-0">
+                  {group.items.map((label) => {
+                    const bgColor = palette[colorIndex % palette.length];
+                    colorIndex++;
+                    return (
+                      <div
+                        key={`${group.title}-${label}`}
                         style={{
-                          margin: 0,
-                          fontSize: isLanguages ? 12 : 13,
-                          lineHeight: 1,
-                          textShadow: "2px 2px 0px #ffffff",
-                          textTransform: "capitalize",
-                          fontWeight: 600,
-                          padding: isLanguages ? 8 : 9,
-                          color: "#000",
-                          boxShadow:
-                            "0 15px 30px 0 rgba(0,0,0,.11), 0 5px 15px 0 rgba(0,0,0,.08)",
+                          background: bgColor,
+                          padding: "6px 12px",
+                          marginBottom: "1px",
+                          marginLeft: "-1rem",
+                          marginRight: "-1rem",
+                          paddingLeft: "1rem",
+                          paddingRight: "1rem",
                         }}
                       >
-                        {label}
-                      </span>
-                    </div>
-                  ))}
+                        <span
+                          style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: 13,
+                            fontWeight: 700,
+                            color: "#000",
+                            textTransform: "capitalize",
+                            display: "block",
+                            lineHeight: 1.2,
+                          }}
+                        >
+                          {label}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             );

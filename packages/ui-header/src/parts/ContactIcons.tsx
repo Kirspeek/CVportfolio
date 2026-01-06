@@ -30,13 +30,18 @@ export default function ContactIcons({
           href={`mailto:${contactEmail}`}
           title={contactEmail}
           aria-label={`Email ${contactEmail}`}
+          className="widget-button rounded-full inline-flex items-center justify-center"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
+            border: `0.5px solid ${color}`,
+            color,
+            background: "transparent",
+            padding: "5px 10px",
+            fontSize: "0.875rem",
+            minWidth: "32px",
+            minHeight: "32px",
           }}
         >
-          <Mail size={size} color={color} strokeWidth={stroke} />
+          <Mail size={Math.min(size, 20)} color={color} strokeWidth={stroke} />
         </a>
       )}
       {contactLinks
@@ -53,20 +58,25 @@ export default function ContactIcons({
               target={l.target}
               rel={l.rel}
               title={l.label}
+              className="widget-button rounded-full inline-flex items-center justify-center"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
+                border: `0.5px solid ${color}`,
+                color,
+                background: "transparent",
+                padding: "5px 10px",
+                fontSize: "0.875rem",
+                minWidth: "32px",
+                minHeight: "32px",
               }}
             >
               {isGithub ? (
-                <Github size={size} color={color} strokeWidth={stroke} />
+                <Github size={Math.min(size, 20)} color={color} strokeWidth={stroke} />
               ) : isLinkedIn ? (
-                <Linkedin size={size} color={color} strokeWidth={stroke} />
+                <Linkedin size={Math.min(size, 20)} color={color} strokeWidth={stroke} />
               ) : isTelegram ? (
-                <Send size={size} color={color} strokeWidth={stroke} />
+                <Send size={Math.min(size, 20)} color={color} strokeWidth={stroke} />
               ) : isInstagram ? (
-                <LinkIcon size={size} color={color} strokeWidth={stroke} />
+                <LinkIcon size={Math.min(size, 20)} color={color} strokeWidth={stroke} />
               ) : null}
             </a>
           );
@@ -77,13 +87,18 @@ export default function ContactIcons({
           target={aboutLink?.target}
           rel={aboutLink?.rel}
           title={aboutLink?.label ?? "About me"}
+          className="widget-button rounded-full inline-flex items-center justify-center"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
+            border: `0.5px solid ${color}`,
+            color,
+            background: "transparent",
+            padding: "5px 10px",
+            fontSize: "0.875rem",
+            minWidth: "32px",
+            minHeight: "32px",
           }}
         >
-          <LinkIcon size={size} color={color} strokeWidth={stroke} />
+          <LinkIcon size={Math.min(size, 20)} color={color} strokeWidth={stroke} />
         </a>
       )}
     </div>
