@@ -9,6 +9,7 @@ import SkillsSection from "./SkillsSection";
 import WorkExperienceSection from "./WorkExperienceSection";
 import AboutHero from "./AboutHero";
 import AboutDescription from "./AboutDescription";
+
 import type { AboutSectionProps, TextsData } from "../types";
 
 export default function AboutSection({ id = "about" }: AboutSectionProps) {
@@ -24,7 +25,7 @@ export default function AboutSection({ id = "about" }: AboutSectionProps) {
       />
       <AboutInfoBox
         style={{
-          width: "min(360px, 92vw)",
+          width: "min(980px, 96vw)",
           margin: "6px auto 0",
           display: "block",
         }}
@@ -34,13 +35,13 @@ export default function AboutSection({ id = "about" }: AboutSectionProps) {
       <SkillsSection />
       <WorkExperienceSection
         id="experience"
-        style={{ width: "min(360px, 92vw)", margin: "12px auto 0" }}
+        style={{ width: "min(980px, 96vw)", margin: "12px auto 0" }}
       />
     </div>
   );
 
   const renderTablet = () => (
-    <div className="space-y-8 px-4 sm:px-6">
+    <div className="flex flex-col gap-8 px-4 sm:px-6">
       <AboutHero />
       <WidgetTitle
         title={(textsData as TextsData).about.title}
@@ -50,13 +51,14 @@ export default function AboutSection({ id = "about" }: AboutSectionProps) {
       <AboutInfoBox
         style={{
           width: "min(520px, 90vw)",
-          margin: "4px auto 0",
+          margin: "0 auto",
           display: "block",
         }}
       >
         <AboutDescription variant="tablet" />
       </AboutInfoBox>
-      <div className="flex flex-col md:flex-row items-start justify-center gap-2">
+
+      <div className="flex flex-col items-center justify-center gap-6">
         <SkillsSection
           style={{ width: "min(520px, 90vw)", margin: "0 auto" }}
         />
@@ -81,25 +83,27 @@ export default function AboutSection({ id = "about" }: AboutSectionProps) {
         />
       </div>
       <div className="px-4 sm:px-6">
-        <div className="flex flex-col lg:flex-row items-start lg:items-stretch justify-center gap-2 lg:gap-4 mx-auto">
-          <div className="flex flex-col items-center gap-2 lg:gap-4">
+        <div className="flex flex-col xl:flex-row items-start xl:items-stretch justify-center gap-6 xl:gap-4 mx-auto">
+          <div className="flex flex-col items-center gap-6 xl:gap-4 w-full xl:w-auto">
             <SkillsSection
               style={{ width: "min(480px, 92vw)", margin: "0 auto" }}
             />
           </div>
-          <div className="flex flex-col items-center gap-2 lg:gap-4">
+          <div className="flex flex-col items-center gap-6 xl:gap-4 w-full xl:w-auto">
             <AboutInfoBox
               style={{
                 minHeight: 473,
                 height: "100%",
-                width: "min(720px, 60vw)",
+                width: "min(720px, 90vw)",
+                maxWidth: "100%",
               }}
             >
               <AboutDescription variant="desktop" />
             </AboutInfoBox>
+
             <WorkExperienceSection
               id="experience"
-              style={{ width: "min(720px, 60vw)", margin: "0 auto" }}
+              style={{ width: "min(720px, 90vw)", margin: "0 auto", maxWidth: "100%" }}
             />
           </div>
         </div>

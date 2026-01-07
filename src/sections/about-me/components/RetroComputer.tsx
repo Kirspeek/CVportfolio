@@ -66,7 +66,7 @@ export default function RetroComputer() {
   const toggleTower = () => setTowerOn((v) => !v);
 
   return (
-    <div className="retro-card">
+    <div className="retro-computer-wrapper" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
       <div className="retro-computer">
         <div className="center">
           <div className="behind" />
@@ -112,9 +112,8 @@ export default function RetroComputer() {
               <div className="powerButton">
                 <div className="buttonSlide">
                   <div
-                    className={`computerButton ${
-                      towerOn ? "computerButtonOn" : "computerButtonOff"
-                    }`}
+                    className={`computerButton ${towerOn ? "computerButtonOn" : "computerButtonOff"
+                      }`}
                     onClick={toggleTower}
                   />
                 </div>

@@ -27,6 +27,7 @@ export default function HeaderWidget({
         }}
       >
         <UIHeader
+          title=""
           defaultSection={defaultSection}
           sections={[]}
           onSectionChange={onSectionChange}

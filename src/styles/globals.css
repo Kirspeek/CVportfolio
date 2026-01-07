@@ -526,32 +526,33 @@ h6 {
   flex-direction: column !important;
 }
 
+/* Existing color cycle */
 @keyframes name-color-cycle {
   0% {
     color: #81a1ff;
   }
 
-  14% {
+  15% {
     color: #ecec84;
   }
 
-  28% {
+  30% {
     color: #ffb69b;
   }
 
-  42% {
+  45% {
     color: #ffacbb;
   }
 
-  57% {
+  60% {
     color: #8bc3e5;
   }
 
-  71% {
+  75% {
     color: #c8bcff;
   }
 
-  85% {
+  90% {
     color: #7ccaae;
   }
 
@@ -561,5 +562,5 @@ h6 {
 }
 
 .animate-name-color {
-  animation: name-color-cycle 16s infinite;
+  animation: name-color-cycle 16s infinite alternate;
 }

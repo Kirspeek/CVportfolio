@@ -28,7 +28,7 @@ export default function ProjectsSection({
         <WidgetTitle title={projects.title} variant="centered" size="xl" />
       </div>
       <div className="px-4 sm:px-6">
-        <div style={{ width: "min(1216px,96vw)", margin: "0 auto" }}>
+        <div style={{ width: "min(1216px, 100%)", margin: "0 auto" }}>
           <div
             className="p-0 sm:p-0"
             style={{
@@ -250,7 +250,7 @@ export default function ProjectsSection({
 
       {chartDashboard && (
         <div className="px-4 sm:px-6 mt-24">
-          <div style={{ width: "min(1216px,96vw)", margin: "0 auto" }}>
+          <div style={{ width: "min(1216px, 100%)", margin: "0 auto" }}>
             <div
               className="p-0 sm:p-0"
               style={{
@@ -305,7 +305,7 @@ export default function ProjectsSection({
                 </div>
               </div>
               <div className="mt-2" style={{ borderTop: "6px solid #bdbdbd" }} />
-              
+
               <p
                 className="mt-4 m-0 break-words"
                 style={{

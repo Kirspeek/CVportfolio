@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { HeaderWidget } from "@/components/widgets";
 import { AboutSection, ProjectsSection, ContactForm } from "@/sections/about-me";
+import CodeTypingAnimation from "@/sections/about-me/components/CodeTypingAnimation";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -88,6 +89,16 @@ export default function Home() {
               <AboutSection id="about" />
               <ProjectsSection id="projects" />
               <ContactForm id="contact" />
+              <CodeTypingAnimation
+                style={{
+                  width: "100%",
+                  margin: "24px auto 32px",
+                  display: "block",
+                  minHeight: "60px",
+                  padding: "12px",
+                  fontSize: "12px",
+                }}
+              />
             </div>
           </main>
         </div>
@@ -118,6 +129,13 @@ export default function Home() {
               <AboutSection id="about" />
               <ProjectsSection id="projects" />
               <ContactForm id="contact" />
+              <CodeTypingAnimation
+                style={{
+                  width: "min(980px, 96vw)",
+                  margin: "48px auto 60px",
+                  display: "block",
+                }}
+              />
             </div>
           </div>
         </main>
