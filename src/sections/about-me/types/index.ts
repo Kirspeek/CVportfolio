@@ -1,4 +1,4 @@
-import type { HeaderLink } from "../../../../../packages/ui-header/src";
+import type { HeaderLink } from "../../../../packages/ui-header/src";
 
 export type AboutSectionProps = {
   id?: string;
