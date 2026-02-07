@@ -1,12 +1,21 @@
+import type { HeaderLink } from "../../../../../packages/ui-header/src";
+
 export type AboutSectionProps = {
   id?: string;
+  activeSection?: "about" | "experience" | "projects" | "contact";
+  onSectionChange?: (section: "about" | "experience" | "projects" | "contact") => void;
+  contactEmail?: string;
+  contactLinks?: HeaderLink[];
 };
 
 export type AboutDescriptionProps = {
   variant?: "mobile" | "tablet" | "desktop";
 };
 
-export type AboutHeroProps = Pick<AboutSectionProps, never>;
+export type AboutHeroProps = Pick<
+  AboutSectionProps,
+  "activeSection" | "onSectionChange" | "contactEmail" | "contactLinks"
+>;
 
 export type AboutInfoBoxProps = {
   style?: React.CSSProperties;
@@ -17,11 +26,13 @@ export type AboutInfoBoxProps = {
 export type SkillsSectionProps = {
   style?: React.CSSProperties;
   variant?: "card" | "simple";
+  collapsible?: boolean;
 };
 
 export type WorkExperienceSectionProps = {
   id?: string;
   style?: React.CSSProperties;
+  collapsible?: boolean;
 };
 
 export type Job = {
@@ -40,6 +51,7 @@ export type SkillCategory = {
 
 export type ProjectsSectionProps = {
   id?: string;
+  collapsible?: boolean;
 };
 
 export type ContactFormProps = {

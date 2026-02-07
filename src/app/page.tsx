@@ -69,6 +69,28 @@ export default function Home() {
     }
   }, []);
 
+  const contactEmail = "cherepenko.iryna@gmail.com";
+  const contactLinks = [
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/irynacherepenko/",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
+    {
+      label: "GitHub",
+      href: "https://github.com/Kirspeek",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
+    {
+      label: "Telegram",
+      href: "https://t.me/kirstnd",
+      target: "_blank",
+      rel: "noopener noreferrer",
+    },
+  ];
+
   if (isMobile) {
     return (
       <div className="flex min-h-screen bg-[var(--background)]">
@@ -86,8 +108,14 @@ export default function Home() {
 
           <main className="flex-1 overflow-y-auto px-6 py-8 bg-[var(--background)]">
             <div className="max-w-5xl mx-auto space-y-12">
-              <AboutSection id="about" />
-              <ProjectsSection id="projects" />
+              <AboutSection
+                id="about"
+                activeSection={activeSection}
+                onSectionChange={handleSectionChange}
+                contactEmail={contactEmail}
+                contactLinks={contactLinks}
+              />
+              <ProjectsSection id="projects" collapsible={true} />
               <ContactForm id="contact" />
               <CodeTypingAnimation
                 style={{
@@ -126,7 +154,13 @@ export default function Home() {
             </div>
 
             <div className="space-y-12">
-              <AboutSection id="about" />
+              <AboutSection
+                id="about"
+                activeSection={activeSection}
+                onSectionChange={handleSectionChange}
+                contactEmail={contactEmail}
+                contactLinks={contactLinks}
+              />
               <ProjectsSection id="projects" />
               <ContactForm id="contact" />
               <CodeTypingAnimation

@@ -12,16 +12,27 @@ import AboutDescription from "./AboutDescription";
 
 import type { AboutSectionProps, TextsData } from "../types";
 
-export default function AboutSection({ id = "about" }: AboutSectionProps) {
+export default function AboutSection({
+  id = "about",
+  activeSection,
+  onSectionChange,
+  contactEmail,
+  contactLinks
+}: AboutSectionProps) {
   const { isSmallMobile, isTablet } = useAboutResponsive();
 
   const renderMobile = () => (
     <div className="space-y-6 px-4 sm:px-6">
-      <AboutHero />
+      <AboutHero 
+        activeSection={activeSection} 
+        onSectionChange={onSectionChange}
+        contactEmail={contactEmail}
+        contactLinks={contactLinks}
+      />
       <WidgetTitle
-        title={(textsData as TextsData).about.title}
+        title={`${(textsData as TextsData).about.sectionNumber} · ${(textsData as TextsData).about.title}`}
         variant="centered"
-        size="md"
+        size="xl"
       />
       <AboutInfoBox
         style={{
@@ -32,10 +43,11 @@ export default function AboutSection({ id = "about" }: AboutSectionProps) {
       >
         <AboutDescription variant="mobile" />
       </AboutInfoBox>
-      <SkillsSection />
+      <SkillsSection collapsible={true} />
       <WorkExperienceSection
         id="experience"
         style={{ width: "min(980px, 96vw)", margin: "12px auto 0" }}
+        collapsible={true}
       />
     </div>
   );
@@ -44,9 +56,9 @@ export default function AboutSection({ id = "about" }: AboutSectionProps) {
     <div className="flex flex-col gap-8 px-4 sm:px-6">
       <AboutHero />
       <WidgetTitle
-        title={(textsData as TextsData).about.title}
+        title={`${(textsData as TextsData).about.sectionNumber} · ${(textsData as TextsData).about.title}`}
         variant="centered"
-        size="lg"
+        size="xl"
       />
       <AboutInfoBox
         style={{

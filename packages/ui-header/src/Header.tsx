@@ -105,40 +105,17 @@ export default function Header({
     >
       <div className="px-4 sm:px-6 lg:px-6">
         {isMobile ? (
-          <div className="flex flex-col gap-3 py-3">
-            <div className="flex items-center justify-center">
-              <Title text={computedTitle} fontSize="1.2rem" />
-            </div>
-            <NavButtons
-              sections={sectionList.map(s => s.key)}
-              activeSection={activeSection}
-              onSelect={setSection}
-              labelMap={sectionLabelMap}
-              getSectionHref={undefined}
-              color={orangeColor}
-              borderWidth={0.5}
-              textSizeClass="text-xs"
-              paddingClass="px-2.5 py-1.5"
-              className="flex flex-wrap items-center justify-center gap-1.5"
-            />
-            {(contactEmail || (contactLinks && contactLinks.length > 0)) && (
+          <>
+            {/* Top Bar: Title + Contact Icons */}
+            <div className="flex flex-col gap-2 py-3">
+              
+              {/* Section Title (using Title component) */}
               <div className="flex items-center justify-center">
-                <div className="flex flex-col items-center gap-2">
-                  {activeSection === "about" && <CvButton size="md" />}
-                  <ContactIcons
-                    contactEmail={contactEmail}
-                    contactLinks={contactLinks}
-                    aboutLink={aboutLink as HeaderLink | undefined}
-                    showAboutLink={activeSection === "about" && !!aboutLink}
-                    color={orangeColor}
-                    size={iconSize}
-                    stroke={iconStroke}
-                    gapClass="gap-3"
-                  />
-                </div>
+                <Title text={sectionLabelMap.get(activeSection) || ""} fontSize="1.2rem" />
               </div>
-            )}
-          </div>
+
+            </div>
+          </>
         ) : isTablet ? (
           <div className="flex flex-col gap-3 py-4">
             <div className="flex items-center justify-center">

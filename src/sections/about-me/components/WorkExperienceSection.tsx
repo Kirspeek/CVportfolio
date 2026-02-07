@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import AboutInfoBox from "./AboutInfoBox";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import type {
   WorkExperienceSectionProps,
   Job,
@@ -14,8 +15,16 @@ const jobs: Job[] = (workExperienceData as WorkExperienceDataFile).jobs;
 export default function WorkExperienceSection({
   id = "experience",
   style,
+  collapsible = false,
 }: WorkExperienceSectionProps) {
   const workExp = (textsData as TextsData).workExperience;
+  const [isOpen, setIsOpen] = useState(!collapsible);
+
+  const toggleOpen = () => {
+    if (collapsible) {
+      setIsOpen(!isOpen);
+    }
+  };
 
   return (
     <section id={id}>
@@ -23,23 +32,32 @@ export default function WorkExperienceSection({
         style={{ width: "min(980px,96vw)", margin: "12px auto 0", ...style }}
       >
         <div className="p-4 sm:p-6 md:p-8">
-          <h3
-            className="m-0"
-            style={{
-              fontFamily: "var(--font-mono)",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              fontWeight: 800,
-            }}
+          <div 
+            onClick={toggleOpen}
+            className={collapsible ? "cursor-pointer flex items-center justify-between" : ""}
           >
-            {workExp.title}
-          </h3>
+            <h3
+              className="m-0"
+              style={{
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                fontWeight: 800,
+              }}
+            >
+              {workExp.title}
+            </h3>
+            {collapsible && (
+              isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />
+            )}
+          </div>
           <div
             className="mt-2"
             style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}
           />
 
-          <div className="mt-4 space-y-0">
+          {isOpen && (
+            <div className="mt-4 space-y-0">
             <div className="flex items-center gap-2 opacity-70 py-3">
               <div
                 style={{
@@ -108,6 +126,7 @@ export default function WorkExperienceSection({
               </div>
             ))}
           </div>
+          )}
         </div>
       </AboutInfoBox>
     </section>

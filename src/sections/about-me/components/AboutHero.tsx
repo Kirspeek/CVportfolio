@@ -2,8 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import textsData from "../data/texts.json";
-import type { TextsData } from "../types";
+import type { TextsData, AboutHeroProps } from "../types";
+import { NavButtons, ContactIcons } from "../../../../packages/ui-header/src";
+import type { SectionKey } from "../../../../packages/ui-header/src";
 import { motion, AnimatePresence } from "framer-motion";
+import { Download } from "lucide-react";
 import { useAboutResponsive } from "../hooks/useAboutResponsive";
 
 const TAGLINE_VARIANTS = [
@@ -12,11 +15,59 @@ const TAGLINE_VARIANTS = [
   "DELIVERING SCALABLE FULL-STACK SOLUTIONS."
 ];
 
-export default function AboutHero() {
+export default function AboutHero({ activeSection, onSectionChange, contactEmail, contactLinks }: AboutHeroProps) {
   const hero = (textsData as TextsData).hero;
   const [currentName, setCurrentName] = useState("IRYNA");
   const [currentTaglineIndex, setCurrentTaglineIndex] = useState(0);
   const { isSmallMobile, isTablet } = useAboutResponsive();
+
+  const orangeColor = "var(--primary-text)";
+  const cvHref = "/cv.pdf";
+
+  // Re-implementing CvButton logic for local use
+  const CvButton: React.FC<{ size?: "sm" | "md" | "lg" }> = ({
+    size = "md",
+  }) => {
+    const padding = size === "sm" ? "5px 10px" : size === "lg" ? "6px 12px" : "5px 10px";
+    const fontSize = size === "sm" ? "0.875rem" : size === "lg" ? "0.875rem" : "0.875rem";
+    const iconPx = size === "sm" ? 18 : size === "lg" ? 18 : 18;
+    const iconStroke = isSmallMobile ? 2.2 : isTablet ? 2.35 : 2.5;
+
+    return (
+      <a
+        href={cvHref}
+        download
+        className="widget-button rounded-full inline-flex items-center gap-1"
+        style={{
+          fontWeight: 500,
+          letterSpacing: "0.01em",
+          border: `0.5px solid ${orangeColor}`,
+          color: orangeColor,
+          background: "transparent",
+          fontFamily: "var(--font-mono)",
+          textTransform: "uppercase",
+          padding,
+          fontSize,
+        }}
+        title="Download CV"
+      >
+        <span>My CV</span>
+        <Download size={iconPx} color={orangeColor} strokeWidth={iconStroke} />
+      </a>
+    );
+  };
+
+  const sections: Array<{ key: SectionKey; label: string }> = [
+    { key: "about", label: "About me" },
+    { key: "experience", label: "Experience" },
+    { key: "projects", label: "Projects" },
+    { key: "contact", label: "Contact" },
+  ];
+  const sectionLabelMap = new Map(sections.map((s) => [s.key, s.label]));
+
+  const handleSectionSelect = (key: SectionKey) => {
+    onSectionChange?.(key);
+  };
 
   useEffect(() => {
     const nameInterval = setInterval(() => {
@@ -149,7 +200,7 @@ export default function AboutHero() {
 
   // 1. Mobile: Default vertical flow
   const renderMobile = () => (
-    <div className="relative flex flex-col justify-center min-h-[70vh] w-full px-4 pt-20 pb-10">
+    <div className="relative flex flex-col justify-center min-h-[100dvh] w-full px-4 pt-4 pb-10">
       {/* Meta info hidden on small mobile usually, but if needed we can show it. 
            Text says "Hidden on small mobile", so we skip MetaInfo here or make it hidden. */}
       <div className="flex-1 flex flex-col justify-center">
@@ -157,6 +208,25 @@ export default function AboutHero() {
       </div>
       <div className="mt-8">
         <FooterBlock />
+        
+        {/* Mobile Navigation & Contact - Relocated here */}
+        <div className="mt-8 flex flex-col gap-4">
+          {/* CV & Social Icons Row */}
+           <div className="flex flex-wrap items-center gap-3">
+             <CvButton size="sm" />
+             <ContactIcons
+               contactEmail={contactEmail}
+               contactLinks={contactLinks}
+               showAboutLink={false}
+               color={orangeColor}
+               size={22}
+               stroke={2.2}
+               gapClass="gap-3"
+             />
+           </div>
+
+
+        </div>
       </div>
     </div>
   );
