@@ -322,7 +322,7 @@ export default function ProjectsSection({
               </p>
 
               <div className="mt-6 flex justify-center">
-                <div className="w-full" style={{ maxWidth: "100%", maxHeight: "800px" }}>
+                <div className="w-full" style={{ maxWidth: "100%", maxHeight: "700px" }}>
                   <ProjectShowcaseCard
                     baseUrl={chartDashboard.liveUrl}
                     variant="panel"
@@ -331,7 +331,7 @@ export default function ProjectsSection({
                       display: "block",
                       border: "6px solid #bdbdbd",
                       borderRadius: 0,
-                      maxHeight: "780px",
+                      maxHeight: "700px",
                       overflow: "hidden",
                     }}
                     controls={false}
