@@ -37,7 +37,7 @@ export default function ContactForm({ id = "contact" }: ContactFormProps) {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          to: "cherepenko.iryna@gmail.com",
+          to: "kira.cherepenko@gmail.com",
         }),
       });
 
@@ -89,7 +89,7 @@ export default function ContactForm({ id = "contact" }: ContactFormProps) {
               <div className="mt-4 mb-6">
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="mailto:cherepenko.iryna@gmail.com"
+                    href="mailto:kira.cherepenko@gmail.com"
                     className="flex items-center gap-2"
                     style={{
                       fontFamily: "var(--font-mono)",
